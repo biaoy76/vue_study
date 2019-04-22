@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
+
+</head>
+<body>
+<div id="id">
+    <input type="button" value="浪起来" @click="go">
+    <input type="button" value="停止" @click="stop">
+
+    <p>{{msg}}</p>
+</div>
+
+<script>
+    var vue = new Vue({
+        el: '#id',
+        data: {
+            msg: "猥琐发育，别浪~！",
+            interval: null
+        },
+        methods: {
+            go: function () {
+                if (this.interval) {
+                    return;
+                }
+
+                this.interval = setInterval(() => {
+                    this.msg = this.msg.substring(1) + this.msg.substring(0, 1);
+                }, 500)
+            },
+
+            stop: function () {
+                clearInterval(this.interval);
+                this.interval = null;
+            }
+        }
+    });
+</script>
+</body>
+</html>
