@@ -2,9 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>v-model</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
 </head>
 <body>
+<div id="id">
+    <p v-text="msg"></p>
 
+    <input type="text" v-model="msg">
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#id',
+        data: {
+            msg: "这是一个双向绑定的示例"
+        },
+        methods: {
+
+        }
+    });
+</script>
 </body>
 </html>
