@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{desc| msgFormat('__自定义__')}}</p>
+</div>
+
+<script>
+    //定义一个全局过滤器，过滤器名称为msgFormat
+    Vue.filter('msgFormat', function (msg, arg) {
+        return msg.replace(/单纯/g, arg);
+    });
+
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            desc: "一个单纯的人问谁是最单纯的"
+        },
+        methods: {}
+    });
+</script>
+</body>
+</html>
