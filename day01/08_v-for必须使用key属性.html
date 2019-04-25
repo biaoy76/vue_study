@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    id<input type="text" v-model="id">
+    name<input type="text" v-model="name">
+    <input type="button" value="添加" @click="add">
+
+    <ul>
+        <li v-for="d in arr" :key="d.id"><input type="checkbox" name="t"> id: {{d.id}}, name：{{d.name}} </li>
+    </ul>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            id: "",
+            name: "",
+            arr: [
+                {id: 1, name: '曹操'},
+                {id: 2, name: '诸葛亮'},
+                {id: 3, name: '袁绍'},
+                {id: 4, name: '周瑜'},
+            ]
+        },
+        methods: {
+            add() {
+                this.arr.unshift({id: this.id, name: this.name})
+            }
+        }
+    });
+</script>
+</body>
+</html>

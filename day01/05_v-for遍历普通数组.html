@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <p v-for="(value, index) in arr">值：{{value}}, 索引：{{index}}</p>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            arr: [1, 2, 3, 4, 5]
+        },
+        methods: {}
+    });
+</script>
+</body>
+</html>
