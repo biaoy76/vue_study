@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>按键修饰符</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>默认回车键的按键修饰符为enter</p>
+    <p>也可以直接使用建码13</p>
+
+    <input type="text" v-model="msg" @keyup.13="add">
+
+    <ul>
+        <li v-for="d in list">{{d}}</li>
+    </ul>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: "",
+            list: []
+        },
+        methods: {
+            add() {
+                this.list.push(this.msg);
+                this.msg = "";
+            }
+        }
+    });
+</script>
+</body>
+</html>

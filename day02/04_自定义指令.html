@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Demo</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <label>无效果<input type="text"></label>
+    <label>自动获取焦点<input type="text" v-focus></label>
+</div>
+
+<div id="app2">
+
+    <input type="text" v-color="'green'">
+</div>
+
+<script>
+    // 使用Vue.directive()定义一个全局的指令，v-focus
+    // 其中参数一：指令的名称，注意在定义的时候指令的名称前面不需要添加v-
+    // 但是在调用的时候，指令名称前面必须添加v-
+    // 参数二：是一个对象，这个对象身上有一些指令相关的函数，这些函数可以在特定的阶段执行特别的任务
+    // 注意：这个对象上所有函数的第一个参数都是el，表示绑定元素的DOM对象
+    Vue.directive('focus', {
+        // 每当指令绑定到元素上时就会执行该方法，仅执行一次
+        // 当元素刚绑定这个指令时，还没有插入到DOM中去
+        bind: function (el) {
+
+        },
+
+        // 当元素插入到DOM中时执行一次
+        inserted: function (el) {
+            el.focus();
+        },
+
+        // 当VNode更新的时候，会执行 updated， 可能会触发多次
+        updated: function (el) {
+
+        }
+    });
+
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        methods: {
+
+        }
+    });
+
+    var vm2 = new Vue({
+        el: '#app2',
+        data: {
+
+        },
+        methods: {
+
+        },
+
+        directives: {
+            color: {
+                bind: function (el, binding) {
+                    console.log(binding);
+
+                    // binding.value表示表达式的值
+                    // binding.expression 表示表达式本身
+
+                    el.style.color = binding.value;
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

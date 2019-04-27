@@ -5,10 +5,44 @@
     <title>vue</title>
 
     <script src="../lib/vue-2.4.0.js"></script>
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td,th {
+            border: 1px solid #000;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
 
+    <div>
+        id： <input type="text" v-model="id">
+        name： <input type="text" v-model="name">
+        <input type="button" @click="add" value="添加">
+
+        搜索 <input type="text" v-model="keywords">
+    </div>
+
+    <table>
+        <thead>
+        <th>id</th>
+        <th>名称</th>
+        <th>创建时间</th>
+        <th>操作</th>
+        </thead>
+        <tbody>
+        <tr v-for="data in search()" :key="data.id">
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.ctime| dateFormat}}</td>
+            <td><a href="" @click.prevent="del(data.id)">删除</a></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 <script>
@@ -16,8 +50,12 @@
         el: '#app',
         data: {
             list: [
-                {id: 1, name: "宝骏", ctime: new Date()}
-            ]
+                {id: 1, name: "宝骏", ctime: new Date()},
+                {id: 2, name: "宝马", ctime: new Date()}
+            ],
+            id: "",
+            name: "",
+            keywords: ""
 
         },
         methods: {
@@ -31,12 +69,34 @@
                 })
 
                 //方法二：通过查找索引的方式
-                var index = this.list.findIndex(item => {
+                /*var index = this.list.findIndex(item => {
                     if (item.id == id) {
                         return true;
                     }
                 });
-                this.list.splice(index, 1);
+                this.list.splice(index, 1);*/
+            },
+
+            add() {
+                var d = {id: this.id, name: this.name, ctime: new Date()};
+                this.list.push(d);
+
+                this.id = this.name = "";
+            },
+
+            search() {
+                return this.list.filter(item => {
+                    if (item.name.includes(this.keywords)) {
+                        return item;
+                    }
+                })
+            }
+        },
+
+
+        filters: {
+            dateFormat(msg) {
+                return msg.toLocaleString().substring(0, 10);
             }
         }
     });
