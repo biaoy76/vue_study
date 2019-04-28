@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <my-com></my-com>
+</div>
+
+<script>
+
+    var com = Vue.extend({
+        template: '<h3>这是使用 Vue.extend 创建的组件</h3>'
+    });
+
+    //定义名称的时候，如果使用驼峰，那么引用的时候，就要去掉驼峰，改成横线的方式
+    //如果不使用驼峰，直接使用名称即可
+    Vue.component("myCom", com);
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        methods: {
+
+        }
+    });
+</script>
+</body>
+</html>
