@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="button" @click="test" value="获取DOM">
+    <h3 ref="myh3">这是标题</h3>
+
+    <login ref="login"></login>
+</div>
+
+<script>
+    Vue.component('login', {
+        template: '<div><input type="button" value="test" @click="fn"><h3>{{msg}}</h3></div>',
+        methods: {
+            fn() {
+                console.log("子组件方法");
+            }
+        },
+        data:function () {
+            return {
+                msg: "你好"
+            }
+        }
+    });
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        methods: {
+            test() {
+                console.log(this.$refs.myh3.innerHTML);
+
+                this.$refs.login.msg = "你好啊啊啊啊啊啊啊啊";
+                this.$refs.login.fn();
+            }
+        }
+    });
+</script>
+</body>
+</html>

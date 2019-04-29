@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <counter></counter>
+    <hr>
+
+    <counter></counter>
+    <hr>
+
+    <counter></counter>
+    <hr>
+</div>
+
+<template id="counter">
+    <div>
+        <input type="button" value="+1" @click="add">
+        <h3>{{count}}</h3>
+    </div>
+</template>
+
+<script>
+    //如果返回全局对象，那么所有组件共享该对象
+    //var obj = {count: 0}
+
+    Vue.component("counter", {
+        template: "#counter",
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        methods: {
+            add() {
+                this.count++;
+            }
+        }
+    });
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        methods: {
+
+        }
+    });
+</script>
+</body>
+</html>

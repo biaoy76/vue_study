@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <com></com>
+</div>
+
+<template id="temp">
+    <h3>这是一个自定义组件--{{msg}}</h3>
+</template>
+
+<script>
+    Vue.component("com", {
+        template: "#temp",
+        data: function () {
+            return {
+                msg: "组件内部数据"
+            }
+        }
+    });
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        methods: {
+
+        }
+    });
+</script>
+</body>
+</html>

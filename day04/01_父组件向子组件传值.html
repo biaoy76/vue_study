@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--绑定父组件参数msg传递给子组件，其中子组件接收时形参名为parent-->
+    <com v-bind:parent="msg"></com>
+</div>
+
+<template id="com">
+    <h3>{{name}}---{{parent}}</h3>
+</template>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '父组件数据'
+        },
+        methods: {
+
+        },
+
+        components: {
+            com: {
+                template: "#com",
+                //子组件私有
+                data: function () {
+                    return {
+                        name: "私有数据"
+                    }
+                },
+                //父组件传递
+                props: ['parent']
+            }
+        }
+    });
+</script>
+</body>
+</html>
