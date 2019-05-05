@@ -12,8 +12,11 @@
 <body>
 <div id="app">
 
-    <a href="#/register">注册</a>
-    <a href="#/login">登陆</a>
+    <!--    <a href="#/register">注册</a>-->
+    <!--    <a href="#/login">登陆</a>-->
+
+    <router-link to="/login">登录</router-link>
+    <router-link to="/register">注册</router-link>
 
     <!--2.使用 router-view 组件来显示匹配到的组件-->
     <router-view></router-view>
@@ -31,7 +34,9 @@
 
     // 4.定义路由
     var router = new VueRouter({
-        routes:[
+        routes: [
+            // {path: '/', component: login},
+            {path: '/', redirect: '/login'},
             {path: '/login', component: login},
             {path: '/register', component: register},
         ]
@@ -39,12 +44,8 @@
 
     var vm = new Vue({
         el: '#app',
-        data: {
-
-        },
-        methods: {
-
-        },
+        data: {},
+        methods: {},
         //5.将路由挂载到Vue对象中
         router: router
     });

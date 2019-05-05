@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Demo</title>
+
+    <script src="../lib/vue-2.4.0.js"></script>
+
+    <style>
+        /*开始和结束状态默认值*/
+        .v-enter, .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+
+        /*开场动画和离场动画时间段*/
+        .v-enter-active, .v-leave-active{
+            transition: all 0.4s ease;
+        }
+
+
+
+        .self-enter, .self-leave-to{
+            opacity: 0;
+            transform: translateY(150px);
+        }
+
+        .self-enter-active, .self-leave-active{
+            transition: all 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <input type="button" value="toggle" @click="toggle">
+    <!--transition元素是由Vue提供的-->
+    <transition>
+        <h3 v-show="flag">这是一个H3</h3>
+    </transition>
+
+    <hr>
+    <input type="button" value="toggle2" @click="toggle2">
+    <transition name="self">
+        <h6 v-show="flag2">这是一个H6</h6>
+    </transition>
+
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            flag: true,
+            flag2: true
+        },
+        methods: {
+            toggle() {
+                this.flag = !this.flag;
+            },
+
+            toggle2() {
+                this.flag2 = !this.flag2;
+            }
+        }
+    });
+</script>
+</body>
+</html>
