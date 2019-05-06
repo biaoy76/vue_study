@@ -5,17 +5,41 @@
     <title>Vue Demo</title>
 
     <script src="../lib/vue-2.4.0.js"></script>
+    <script src="../lib/vue-router-3.0.1.js"></script>
 </head>
 <body>
 <div id="app">
+    <router-link to="/login?name=张三">登录</router-link>
 
+    <router-view></router-view>
 </div>
 
 <script>
+    var login = {
+        template: "<h3>欢迎登陆--{{$route.query.name}}</h3>",
+        data: function () {
+            return {
+                name: ""
+            }
+        },
+        created() {
+            console.log(this.$route);
+
+            //this.name = this.$route.query.name;
+        }
+    };
+
+    var router = new VueRouter({
+        routes: [
+            {path: "/login", component: login}
+        ]
+    });
+
     var vm = new Vue({
         el: '#app',
         data: {},
-        methods: {}
+        methods: {},
+        router: router
     });
 </script>
 </body>

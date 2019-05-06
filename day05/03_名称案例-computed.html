@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Vue Demo</title>
+    <title>计算属性</title>
 
     <script src="../lib/vue-2.4.0.js"></script>
 </head>
@@ -18,17 +18,12 @@
         el: '#app',
         data: {
             firstName: "",
-            lastName: "",
-            fullName: ""
+            lastName: ""
         },
         methods: {},
-        watch: {
-            "firstName": function (newValue, oldValue) {
-                console.log(newValue);
-                this.fullName = this.firstName + "-" + this.lastName
-            },
-            "lastName": function (newValue, oldValue) {
-                this.fullName = this.firstName + newValue;
+        computed: {
+            "fullName": function () {
+                return this.firstName + "_" + this.lastName;
             }
         }
     });
