@@ -42,7 +42,7 @@
                     '<div class="thumbDrag"><span></span></div>' +
                     "</div>",
                     //大图
-                    IMAGE: '<img class="image" ondragstart="return false;"/>'
+                    IMAGE: '<img class="image"/>'
                 }
             };
 
@@ -284,6 +284,8 @@
                     });
                 });
                 $image = $(".image[index='" + o.activeIndex + "']", $gallery).addClass("active");
+
+                $(".image").draggable();
             }
 
             function toggleImage() {
@@ -297,6 +299,7 @@
                     width: imageWidth,
                     height: imageHeight
                 }).removeClass("rotate0 rotate90 rotate180 rotate270");
+
                 $thumbImg = $thumbnails.find("img").attr("src", o.imgs[o.activeIndex].url);
                 $thumbnails.find("img").removeAttr("class").removeAttr("style");
                 isVertical = false;

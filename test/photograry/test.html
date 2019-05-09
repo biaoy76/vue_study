@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+
+        .gallerys{
+            position: relative;
+        }
         html, body {
             width: 100%;
             height: 100%;
@@ -14,10 +18,14 @@
         img {
             max-width: 300px;
             max-height: 200px;
+            position: absolute;
         }
     </style>
 
+    <link rel="stylesheet" href="jqueryui/jquery-ui.css">
+
     <script src="jquery-photo-gallery/jquery.js"></script>
+    <script src="jqueryui/jquery-ui.js"></script>
     <script src="jquery-photo-gallery/jquery.photo.gallery.js"></script>
 </head>
 <body>
@@ -30,5 +38,10 @@
     <img class="gallery-pic" src="../img/t3.png" ondblclick="$.openPhotoGallery(this)">
     <img class="gallery-pic" src="../img/t4.png" ondblclick="$.openPhotoGallery(this)">
 </div>
+
+<script>
+
+    $(".gallery-pic").draggable();
+</script>
 </body>
 </html>
